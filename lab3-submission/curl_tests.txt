@@ -1,0 +1,55 @@
+(base) chenguagnghui@ChendeMacBook-Pro lab3-submission % curl -i -X PUT http://localhost:3000/api/expenses/1 \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Groceries (weekly)","amount":40}'
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-Response-Time: 1ms
+Date: Fri, 26 Sep 2025 04:20:18 GMT
+Content-Length: 70
+
+{"data":{"expense":{"id":1,"title":"Groceries (weekly)","amount":40}}}%                                                          
+(base) chenguagnghui@ChendeMacBook-Pro lab3-submission % curl -i -X PATCH http://localhost:3000/api/expenses/1 \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Coffee beans"}'
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-Response-Time: 0ms
+Date: Fri, 26 Sep 2025 04:20:45 GMT
+Content-Length: 64
+
+{"data":{"expense":{"id":1,"title":"Coffee beans","amount":40}}}%                                                                
+(base) chenguagnghui@ChendeMacBook-Pro lab3-submission % curl -i -X PATCH http://localhost:3000/api/expenses/1 \
+  -H 'Content-Type: application/json' \
+  -d '{"amount":99}'
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-Response-Time: 0ms
+Date: Fri, 26 Sep 2025 04:21:07 GMT
+Content-Length: 64
+
+{"data":{"expense":{"id":1,"title":"Coffee beans","amount":99}}}%                                                                
+(base) chenguagnghui@ChendeMacBook-Pro lab3-submission % curl -i -X PATCH http://localhost:3000/api/expenses/1 \
+  -H 'Content-Type: application/json' \
+  -d '{}'
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-Response-Time: 0ms
+Date: Fri, 26 Sep 2025 04:21:18 GMT
+Content-Length: 64
+
+{"data":{"expense":{"id":1,"title":"Coffee beans","amount":99}}}%                                                                
+(base) chenguagnghui@ChendeMacBook-Pro lab3-submission % curl -i -X PUT http://localhost:3000/api/expenses/999 \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"X","amount":1}'
+
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+X-Response-Time: 1ms
+Date: Fri, 26 Sep 2025 04:21:27 GMT
+Content-Length: 292
+
+{"success":false,"error":{"name":"ZodError","message":"[\n  {\n    \"origin\": \"string\",\n    \"code\": \"too_small\",\n    \"minimum\": 3,\n    \"inclusive\": true,\n    \"path\": [\n      \"title\"\n    ],\n    \"message\": \"Too small: expected string to have >=3 characters\"\n  }\n]"}}%  

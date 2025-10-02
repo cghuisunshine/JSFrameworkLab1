@@ -1,0 +1,20 @@
+(base) chenguagnghui@ChendeMacBook-Pro comp3330-expensetracker % curl -i http://localhost:3000/api/expenses
+
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: application/json
+X-Response-Time: 729ms
+Date: Thu, 02 Oct 2025 18:17:15 GMT
+Content-Length: 15
+
+{"expenses":[]}%                                                                                                                 
+(base) chenguagnghui@ChendeMacBook-Pro comp3330-expensetracker % curl -i http://localhost:3000/api/expenses
+
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: application/json
+X-Response-Time: 94ms
+Date: Thu, 02 Oct 2025 18:17:52 GMT
+Content-Length: 50
+
+{"expenses":[{"id":2,"title":"good ","amount":1}]}%  

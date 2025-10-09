@@ -1,0 +1,8 @@
+(base) chenguagnghui@ChendeMacBook-Pro comp3330-expensetracker % curl -X POST http://localhost:3000/api/expenses -H "Content-Type: application/json" -d '{"title": "New Expense", "amount": 123}'
+{"expense":{"id":5,"title":"New Expense","amount":123}}%                                                                         
+(base) chenguagnghui@ChendeMacBook-Pro comp3330-expensetracker % curl http://localhost:3000/api/expenses/5                      
+{"expense":{"id":5,"title":"New Expense","amount":123}}%                                                                         
+(base) chenguagnghui@ChendeMacBook-Pro comp3330-expensetracker % curl -X PUT http://localhost:3000/api/expenses/5 -H "Content-Type: application/json" -d '{"title": "Updated Expense", "amount": 456}'
+{"expense":{"id":5,"title":"Updated Expense","amount":456}}%                                                                     
+(base) chenguagnghui@ChendeMacBook-Pro comp3330-expensetracker % curl -X DELETE http://localhost:3000/api/expenses/5       
+{"deleted":{"id":5,"title":"Updated Expense","amount":456}}% 

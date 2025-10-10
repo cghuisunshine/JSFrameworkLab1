@@ -1,5 +1,6 @@
 // server/app.ts
 import { Hono } from 'hono'
+import { authRoute } from './auth/kinde'
 import { logger } from 'hono/logger'
 import { expensesRoute } from './routes/expenses'
 
@@ -8,6 +9,9 @@ import { cors } from 'hono/cors'
 
 
 export const app = new Hono()
+
+app.route('/api/auth', authRoute)
+
 
 // Global logger (from Lab 1)
 app.use('*', logger())
@@ -33,3 +37,8 @@ app.get('/health', (c) => c.json({ status: 'healthy' }))
 
 // Mount API routes
 app.route('/api/expenses', expensesRoute)
+
+import { secureRoute } from './routes/secure'
+app.route('/api/secure', secureRoute)
+
+export default app

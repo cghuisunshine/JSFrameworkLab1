@@ -1,0 +1,10 @@
+(base) chenguagnghui@ChendeMacBook-Pro comp3330-expensetracker % curl -i http://localhost:3000/api/secure/profile
+
+HTTP/1.1 401 Unauthorized
+Vary: Origin
+Content-Type: application/json
+X-Response-Time: 0ms
+Date: Fri, 10 Oct 2025 00:05:58 GMT
+Content-Length: 24
+
+{"error":"Unauthorized"}%  

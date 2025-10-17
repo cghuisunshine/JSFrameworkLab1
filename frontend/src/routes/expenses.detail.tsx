@@ -1,7 +1,8 @@
 // /frontend/src/routes/expenses.detail.tsx
 import { useQuery } from '@tanstack/react-query'
+import { UploadExpenseForm } from '../components/UploadExpenseForm'
 
-type Expense = { id: number; title: string; amount: number }
+type Expense = { id: number; title: string; amount: number; fileUrl: string | null }
 const API = '/api' // if you’re using Vite proxy; otherwise "http://localhost:3000/api"
 
 export default function ExpenseDetailPage({ id }: { id: number }) {
@@ -9,7 +10,9 @@ export default function ExpenseDetailPage({ id }: { id: number }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['expenses', id],
     queryFn: async () => {
-      const res = await fetch(`${API}/expenses/${id}`)
+      const res = await fetch(`${API}/expenses/${id}`, {
+        credentials: 'include',
+      })
       if (!res.ok) throw new Error(`Failed to fetch expense with id ${id}`)
       return res.json() as Promise<{ expense: Expense }>
     },
@@ -26,10 +29,27 @@ export default function ExpenseDetailPage({ id }: { id: number }) {
 
   return (
     <section className="mx-auto max-w-3xl p-6">
-      <div className="rounded border bg-background text-foreground p-6">
+      <div className="rounded border bg-background text-foreground p-6 space-y-4">
         <h2 className="text-xl font-semibold">{item.title}</h2>
         <p className="mt-2 text-sm text-muted-foreground">Amount</p>
         <p className="text-lg tabular-nums">#{item.amount}</p>
+        <div className="pt-2 border-t">
+          {item.fileUrl ? (
+            <a
+              href={item.fileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-primary underline"
+            >
+              Download Receipt
+            </a>
+          ) : (
+            <p className="text-sm text-muted-foreground">Receipt not uploaded.</p>
+          )}
+        </div>
+      </div>
+      <div className="mt-6">
+        <UploadExpenseForm expenseId={item.id} />
       </div>
     </section>
   )

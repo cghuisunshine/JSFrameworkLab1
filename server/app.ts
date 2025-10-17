@@ -41,4 +41,7 @@ app.route('/api/expenses', expensesRoute)
 import { secureRoute } from './routes/secure'
 app.route('/api/secure', secureRoute)
 
+import { uploadRoute } from './routes/upload'
+app.route('/api/upload', uploadRoute)
+
 export default app
